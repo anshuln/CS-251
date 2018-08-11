@@ -17,5 +17,3 @@ class Menu():
 			ret+="\n"
 		return(ret)
 
-	def __hash__(self):
-		return hash(self.rating)
