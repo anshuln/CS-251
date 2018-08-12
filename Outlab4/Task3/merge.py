@@ -17,7 +17,7 @@ if __name__=="__main__":
 		buff[1::2]=day
 		buff[2::2]=night
 		buff[0]=rday[row][0]
-		print(buff)
+		# print(buff)
 		writer.writerow(buff)		
 
 
