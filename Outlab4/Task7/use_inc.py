@@ -1,5 +1,5 @@
 from inc import ang_to_vec as atv 
-from qe import vec_to_ang as vta 
+from inc import vec_to_ang as vta 
 import sys
 import numpy as np 
 
@@ -12,18 +12,23 @@ if __name__=="__main__":
 	choice=sys.argv[3]
 	infile=open(infile_n,"r")
 	outfile=open(outfile_n,"w")
-	i=np.loadtext(infile,delimiter=",")
+	i=np.loadtxt(infile,delimiter=",")
+	try:
+		p=i.shape[1]
+	except:
+		i=i.reshape((i.shape[0],1))
 	if(choice=='0'):
-		if(i.shape[1]==1:
+		if(i.shape[1]==1):
 			euler=atv(i)
-			np.writetext(outfile,delimiter=",")
+			np.savetxt(outfile,euler,delimiter=",")
 		else:
 			print("Wrong dimensions")
 			exit(1)
 	else:
-		if(i.shape[1]=2):
+		if(i.shape[1]==2):
 			quaternion=vta(i)
-			np.writetext(outfile,delimiter=",")
+			print(quaternion.shape)
+			np.savetxt(outfile,quaternion,delimiter=",")
 		else:
 			print("Wrong dimensions")
 			exit(1)

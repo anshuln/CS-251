@@ -1,28 +1,35 @@
 import json
 import random
 def makeTeams(teams,players):
-	if(teams==0):
-		raise ValueError("Error: Enter a non-zero number of teams")
-	elif(players%teams!=0):
-		error="Error: Remove "+str(players%teams)+" players"
-		raise ValueError(error)
-	else:
-		pool_teams="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-		roster={}
-		jerseys=[]
-		for i in range(teams):
-			team=[]
-			for j in range(int(players/teams)):
-				player={}
-				jersey=random.randint(1,1000)
-				while jersey in jerseys:
+	try:
+		x=players/teams
+		
+		# raise ZeroDivisionError("Error: Enter a non-zero number of teams")
+		if(players%teams!=0):
+			error="Error: Remove "+str(players%teams)+" players"
+			raise ValueError(error)
+		else:
+			pool_teams="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+			roster={}
+			jerseys=[]
+			for i in range(teams):
+				team=[]
+				for j in range(int(players/teams)):
+					player={}
 					jersey=random.randint(1,1000)
-				loyalty=random.random()*10
-				player["Jeresey"]=jersey
-				player["Loyalty"]=loyalty
-				team.append(player)
-			roster[pool_teams[i]]=team
-		return roster
+					while jersey in jerseys:
+						jersey=random.randint(1,1000)
+					loyalty=random.random()*10
+					player["Jeresey"]=jersey
+					player["Loyalty"]=loyalty
+					team.append(player)
+				roster[pool_teams[i]]=team
+			return roster
+	except ZeroDivisionError:
+		print("Error : No. of teams cannot be zero")
+	except ValueError as error:
+		print(error)
+
 def get_min_loyalty(team,teams):
 	roster=teams[team]
 	m={}
