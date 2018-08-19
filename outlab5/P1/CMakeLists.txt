@@ -1,28 +1,16 @@
 cmake_minimum_required(VERSION 3.10)
+project(helloworld)
+add_executable(helloworld helloworld.cpp)
 
-set(CMAKE_BUILD_TYPE DEBUG)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+project(usespthread)
+SET(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-pthread")
+add_executable(usespthread usespthread.cpp)
 
-project(build)
+SET(LIB_SRC myengine/myengine.cpp)	
+include_directories(include)
+ADD_LIBRARY(MyEngineDynamic SHARED ${LIB_SRC})
+ADD_LIBRARY(MyEngineStatic STATIC ${LIB_SRC})
 
-add_executable(helloworld
-	helloworld.cpp)
-
-find_package (Threads)
-
-add_executable(usespthread	
-	usespthread.cpp
-	)
-
-target_link_libraries (usespthread ${CMAKE_THREAD_LIBS_INIT})
-
-add_library(MyEngineDynamic SHARED
-	myengine/myengine.cpp
-	)	
-set_target_properties(MyEngineDynamic PROPERTIES PUBLIC_HEADER myengine/myengine.h)
-
-add_library(MyEngineStatic STATIC
-	myengine/myengine.cpp
-)
-
-install(TARGETS MyEngineDynamic DESTINATION ​/usr/local/lib/)
+install(TARGETS MyEngineDynamic DESTINATION /usr/local/lib/)
+install(TARGETS MyEngineStatic DESTINATION /usr/local/lib/)
+INSTALL(FILES myengine/myengine.hpp DESTINATION /usr/local/include)
