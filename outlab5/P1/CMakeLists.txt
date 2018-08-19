@@ -11,6 +11,5 @@ include_directories(include)
 ADD_LIBRARY(MyEngineDynamic SHARED ${LIB_SRC})
 ADD_LIBRARY(MyEngineStatic STATIC ${LIB_SRC})
 
-install(TARGETS MyEngineDynamic DESTINATION /usr/local/lib/)
-install(TARGETS MyEngineStatic DESTINATION /usr/local/lib/)
+install(TARGETS MyEngineDynamic MyEngineStatic DESTINATION /usr/local/lib/)
 INSTALL(FILES myengine/myengine.hpp DESTINATION /usr/local/include)
