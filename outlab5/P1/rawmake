@@ -20,7 +20,7 @@ libMyEngineDynamic.so: myengine.o
 installdynamic: libMyEngineDynamic.so
 	sudo cp libMyEngineDynamic.so /usr/local/lib
 	sudo cp myengine/myengine.hpp /usr/local/include/myengine.hpp
-
+PHONY: installstatic
 installstatic: libMyEngineStatic.a
 	sudo cp libMyEngineStatic.a /usr/local/lib
 	sudo cp myengine/myengine.hpp /usr/local/include/myengine.hpp
@@ -34,4 +34,5 @@ mygame.o: mygame/mygame.cpp
 mygamedynamic: mygame.o
 	g++ -o mygamedynamic mygame.o /usr/local/lib
 clean:
-	rm *.a *.so *.o
+	rm -f *.a *.so *.o
+	rm -f helloworld usespthread mygamestatic mygamedynamic
