@@ -32,7 +32,7 @@ mygame.o: mygame/mygame.cpp
 	g++ -c mygame/mygame.cpp
 
 mygamedynamic: mygame.o
-	g++ -o mygamedynamic mygame.o /usr/local/lib
+	g++ -o mygamedynamic mygame.o -L /usr/local/lib -lMyEngineDynamic
 clean:
 	rm -f *.a *.so *.o
 	rm -f helloworld usespthread mygamestatic mygamedynamic
