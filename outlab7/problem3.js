@@ -1,9 +1,9 @@
 $(document).ready(function(){
-	$("#text").find("ol").css("background-color","red");
-	$("#text").find("ol").css("color","blue");
+	$("nav[role='navigation']").children("ul").find("ul:first").css("background-color","red");
+	$("nav[role='navigation']").children("ul").find("ul:first").css("color","blue");
 	$("#text").find("ol").find("li").append(" in the list");
-	$("a[name]").css("background-color","#eee");
-	$("a[href='#!']").click(function(){
+	$("body").css("background-color","#eee");
+	$("a").click(function(){
     	alert("You clicked some link");
 	});
 });
