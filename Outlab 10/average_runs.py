@@ -10,7 +10,7 @@ if __name__ == "__main__":
     ginti = ipl.cursor()
     ginti.execute('''select  count(match_id), venue_name  from 'match' where venue_name!="NULL" group by venue_name ''')
     for a,b in zip(cur,ginti):
-    	d= (a[0])/b[0]
+    	d= float(a[0])/b[0]
     	#print(a[0],b[0],a[0]/b[0])
     	print(str(b[1])+","+str(d))
      	
